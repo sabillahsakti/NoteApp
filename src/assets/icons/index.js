@@ -6,6 +6,7 @@ import IconAddActive from './Add-Active.svg'
 import IconAdd from './Add.svg'
 import IconEdit from './edit.svg'
 import IconDelete from './Delete.svg'
+import IconLogo from './logo.svg'
 
 export {
     IconHome,
@@ -15,5 +16,6 @@ export {
     IconAdd,
     IconAddActive,
     IconEdit,
-    IconDelete
+    IconDelete,
+    IconLogo
 };

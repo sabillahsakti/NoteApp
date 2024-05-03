@@ -100,7 +100,7 @@ export class Add extends Component {
           <Pilihan
             label="Status"
             selectedValue={status}
-            onValueChange={(status) => this.ubahStatus(status)}
+            onValueChange={(status) => this.setState({ status })}
           />
           <View style={styles.categoryContainer}>
             <Pilihan
@@ -108,22 +108,25 @@ export class Add extends Component {
               selectedValue={category}
               datas={categoryUser}
               width={200}
-              onValueChange={(selectedCategory) => this.setState({ category: selectedCategory })}
+              onValueChange={(category) => this.setState({ category })}
             />
-            <Button type="text" title="Add" padding={10} onPress={this.toggleModal} fontSize={14} />
+            <Button 
+              title="Add" 
+              onPress={this.toggleModal} 
+              padding={7}
+            />
           </View>
           <Button
-            type="text"
             title="Save"
             padding={10}
-            onPress={() => { this.onAddNote() }}
+            onPress={() => { console.log("Save Note"); }}
           />
         </View>
 
         <Modal
           isVisible={isModalVisible}
-          style={styles.modal} // Menentukan gaya modal
-          onBackdropPress={this.toggleModal} // Menutup modal saat area di luar modal diklik
+          style={styles.modal}
+          onBackdropPress={this.toggleModal}
         >
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Add New Category</Text>
@@ -141,9 +144,8 @@ export class Add extends Component {
             </TouchableOpacity>
           </View>
         </Modal>
-
       </SafeAreaView>
-    )
+    );
   }
 }
 
@@ -177,6 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
+    justifyContent: 'space-between' // Updated for better spacing
   },
   modal: {
     justifyContent: 'center',

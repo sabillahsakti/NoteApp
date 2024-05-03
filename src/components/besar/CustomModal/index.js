@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors } from '../../../utils';
 
 const CustomModal = ({ visible, onClose }) => {
 
@@ -8,7 +9,7 @@ const CustomModal = ({ visible, onClose }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8080/get-data');
+                const response = await fetch('http://192.168.18.38:8080/get-data');
                 const json = await response.json();
                 setData(json); // Simpan data ke state
             } catch (error) {
@@ -68,6 +69,7 @@ const CustomModal = ({ visible, onClose }) => {
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
+                    <Text style={styles.modalTitle}>Kalimat ini termasuk kalimat positif atau negatif</Text>
                     <Text style={styles.modalText}>{data ? JSON.stringify(data.text) : 'Loading data...'}</Text>
                     <TouchableOpacity onPress={handleIncrementPositive} style={styles.closeButton}>
                         <Text style={styles.closeButtonText}>Positif</Text>
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalView: {
+        margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
@@ -102,6 +105,13 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    modalTitle: {
+        marginBottom: 15,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#333',
+    },
     modalText: {
         marginBottom: 20,
         textAlign: 'center',
@@ -109,7 +119,7 @@ const styles = StyleSheet.create({
     },
     closeButton: {
         marginTop: 10,
-        backgroundColor: '#5a67d8',
+        backgroundColor: colors.primary,
         padding: 10,
         borderRadius: 10,
     },

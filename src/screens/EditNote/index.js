@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SafeAreaView, StyleSheet, View, Alert } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Alert, Text } from 'react-native'
 import { Button, Input, Pilihan } from '../../components'
 import { editNote, getNote } from '../../actions/AuthAction';
 
@@ -63,44 +63,47 @@ export class EditNote extends Component {
   }
 
   render() {
-    const { title, content, status, category, categoryUser } = this.state
+    const { title, content, status, category, categoryUser } = this.state;
     return (
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
+        <Text style={styles.title}>Edit Note</Text>
           <Input
             label="Title"
-            width={200}
             value={title}
             onChangeText={(title) => this.setState({ title })}
+            style={styles.input}
           />
           <Input
             textarea={true}
             label="Content"
             value={content}
             onChangeText={(content) => this.setState({ content })}
+            style={styles.textarea}
           />
           <Pilihan
             label="Status"
             selectedValue={status}
-            onValueChange={(status) => this.ubahStatus(status)}
+            onValueChange={(status) => this.setState({ status })}
+            style={styles.picker}
           />
           <Pilihan
             label="Category"
             selectedValue={category}
             datas={categoryUser}
-            onValueChange={(category) => this.setState({
-              category: category,
-            })}
+            onValueChange={(category) => this.setState({ category })}
+            style={styles.picker}
           />
           <Button
-            type="text"
             title="Update"
             padding={10}
             onPress={() => { this.onEditNote() }}
+            color="#007AFF" // iOS blue button color
+            style={styles.button}
           />
         </View>
       </SafeAreaView>
-    )
+    );
   }
 }
 
@@ -122,12 +125,37 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: 'white',
-    padding: 20, // Mengurangi padding agar lebih kompak
+    padding: 20,
     borderRadius: 10,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    marginHorizontal: 20,
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
     marginBottom: 10,
-    paddingHorizontal: 30,
-    marginHorizontal: 20
-  }
-})
+  },
+  textarea: {
+    height: 100, // larger area for content
+    textAlignVertical: 'top', // align text at the top
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 10,
+  },
+  picker: {
+    marginBottom: 10,
+  },
+  button: {
+    marginTop: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
+},
+});

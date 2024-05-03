@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, StyleSheet } from 'react-native'
+import {colors} from '../../../utils'
 
 const CategoryTab = ({padding, title, onPress, fontSize}) => {
   return (
@@ -13,7 +14,7 @@ export default CategoryTab
 
 const styles = StyleSheet.create({
   container:(padding)=>({
-      backgroundColor : 'blue',
+      backgroundColor : colors.primary,
       padding: padding,
       borderRadius: '50%',
       width:100,

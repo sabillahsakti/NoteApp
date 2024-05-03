@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import TabItem from '../TabItem';
+import { colors } from '../../../utils';
 
 const BottomNavigator = ({ state, descriptors, navigation }) => {
   return (
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     right : 0,
     bottom : 0,
     flexDirection: 'row',
-    backgroundColor: 'blue',
+    backgroundColor: colors.primary,
     paddingVertical: 8,
     paddingHorizontal: 43,
     marginBottom: 30,

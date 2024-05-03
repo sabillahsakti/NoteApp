@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet, Alert, Text } from 'react-native'
 import { Input, Button } from '../../components'
 import { registerUser } from '../../actions/AuthAction'
 
@@ -40,10 +40,11 @@ export class Register extends Component {
         }
     }
     render() {
-        const { nama, email, nohp, password } = this.state
+        const { nama, email, nohp, password } = this.state;
         return (
             <View style={styles.page}>
                 <View style={styles.card}>
+                    <Text style={styles.title}>Register</Text>
                     <Input
                         label="Nama"
                         value={nama}
@@ -68,42 +69,40 @@ export class Register extends Component {
                     />
                     <Button
                         title="Register"
-                        type="text"
-                        icon="submit"
                         padding={10}
-                        fontSize={18}
                         onPress={() => { this.onRegister() }}
                     />
                 </View>
             </View>
-        )
+        );
     }
 }
-
-export default Register
 
 const styles = StyleSheet.create({
     page: {
         flex: 1,
         backgroundColor: 'white',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 20,
     },
     card: {
-        marginHorizontal: 30,
+        margin: 20,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
         shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
         elevation: 5,
-        backgroundColor: 'white',
-        paddingHorizontal: 30,
-        paddingBottom: 20,
-        paddingTop: 10,
-        borderRadius: 10,
-        marginTop: 10
     },
-})
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+        color: '#333',
+    },
+});
+
+export default Register;

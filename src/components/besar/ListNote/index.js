@@ -25,29 +25,26 @@ const ListNote = ({ judul, isi, tanggal, status, category, noteId }) => {
 
   return (
     <View style={styles.cardLogin}>
-      <View>
+      <View style={{ flex: 1 }}>
         <Text style={styles.judul}>{judul}</Text>
-        <Text>{isi}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={styles.dateText}>{tanggal}</Text>
+        <Text style={styles.isi}>{isi}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
           <View style={styles.status}>
             <Text style={styles.statusText}>{status}</Text>
           </View>
         </View>
       </View>
-      <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
-        <TouchableOpacity onPress={handleEditClick}>
+      <View style={styles.actionIcons}>
+        <TouchableOpacity onPress={handleEditClick} style={styles.iconButton}>
           <IconEdit />
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleDeleteClick}>
+        <TouchableOpacity onPress={handleDeleteClick} style={styles.iconButton}>
           <IconDelete />
         </TouchableOpacity>
       </View>
     </View>
-  )
-}
-
-export default ListNote
+  );
+};
 
 const styles = StyleSheet.create({
   cardLogin: {
@@ -60,22 +57,27 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: 'white',
-    padding: 20, // Mengurangi padding agar lebih kompak
+    padding: 20,
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', // Memastikan konten vertikal sejajar
+    alignItems: 'center',
     marginBottom: 10,
   },
   judul: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 4, // Added some margin for better spacing
   },
-  dateText: {
+  isi: {
     fontSize: 16,
-    marginRight: 4,
   },
   status: {
+    backgroundColor: 'green',
+    borderRadius: 50,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -84,14 +86,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    backgroundColor: 'green',
-    borderRadius: 50,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   statusText: {
     color: 'white',
     fontWeight: 'bold',
   },
-})
+  actionIcons: {
+    flexDirection: 'row',
+  },
+  iconButton: {
+    marginLeft: 10, // Space between icons
+  }
+});
+
+export default ListNote;

@@ -9,7 +9,8 @@ export class Home extends Component {
 
     this.state = {
       userNotes: [],
-      category:[]
+      category:[],
+      selectedCategory: []
     };
   }
 
@@ -31,8 +32,17 @@ export class Home extends Component {
     this._unsubscribe();
   }
 
+  onCategoryPress = (sselectedCategory) => {
+    this.setState({
+      selectedCategory: sselectedCategory
+    })
+  };
+
   render() {
-    const { userNotes, category } = this.state
+    const { userNotes, category, selectedCategory } = this.state
+    const filteredNotes = selectedCategory
+    ? userNotes.filter((note) => note.category === selectedCategory)
+    : userNotes;
     return (
       <SafeAreaView>
         <View style={styles.page}>
@@ -42,11 +52,12 @@ export class Home extends Component {
                 key={index}
                 title={note}
                 padding={20}
+                onPress={() => this.onCategoryPress(note)}
               />
             ))}
           </View>
           <View style={styles.todo}>
-            {userNotes.map((note, index) => (
+            {filteredNotes.map((note, index) => (
               <ListNote
                 key={index}
                 judul={note.title}

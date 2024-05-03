@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { colors } from '../../../utils'
 
 
 const Button = ({padding, title, onPress, fontSize}) => {
@@ -14,7 +15,7 @@ export default Button
  
 const styles = StyleSheet.create({
     container:(padding)=>({
-        backgroundColor : 'red',
+        backgroundColor : colors.primary,
         padding: padding,
         borderRadius: 5,
         marginTop: 7
